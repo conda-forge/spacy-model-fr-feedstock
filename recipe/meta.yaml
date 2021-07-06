@@ -1,7 +1,7 @@
 {% set prefix = "spacy-model-" %}
 {% set lang = "fr" %}
 {% set name = lang + "_core_news" %}
-{% set version = "2.0.0" %}
+{% set version = "3.1.0" %}
 
 package:
   name: {{ prefix }}{{ lang|lower }}
@@ -10,10 +10,10 @@ package:
 source:
   - folder: sm
     url: https://github.com/explosion/spacy-models/releases/download/{{ name }}_sm-{{ version }}/{{ name }}_sm-{{ version }}.tar.gz
-    sha256: bd1656ed72815f793a445d80dc7eed0fede1800963684636e36c3c434caa90fe
+    sha256: 9d3ee828c02bea4a29c83e8e95d8320cc0a8e543cf7fbcb47ae3e0dadcada824
   - folder: md
     url: https://github.com/explosion/spacy-models/releases/download/{{ name }}_md-{{ version }}/{{ name }}_md-{{ version }}.tar.gz
-    sha256: 9aa2119982e20f8a44bbdbe6a35c52e1aa64f4dc42fe16570a88db400d517b1a
+    sha256: 8b63c2d27ef5ad02969b880fedad260e0df55e470d093075fc11edf5d33916af
 
 build:
   noarch: python
@@ -24,7 +24,7 @@ test:
     - echo "make lint happy"
 
 outputs:
-  - name: {{prefix}}{{ name }}_{{ size }}
+  - name: {{ prefix }}{{ name }}_{{ size }}
     script: build.sh  # [unix]
     script: build.bat  # [win]
     requirements:
@@ -46,7 +46,7 @@ outputs:
 about:
   home: https://spacy.io
   license: CC BY-SA 3.0
-  summary: 'French multi-task CNN trained on the French Sequoia (Universal Dependencies) and WikiNER corpus.'
+  summary: French multi-task CNN trained on the French Sequoia (Universal Dependencies) and WikiNER corpus.
 
   doc_url: https://spacy.io/models/fr
 
