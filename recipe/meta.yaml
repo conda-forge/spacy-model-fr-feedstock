@@ -1,7 +1,7 @@
 {% set prefix = "spacy-model-" %}
 {% set lang = "fr" %}
 {% set name = lang + "_core_news" %}
-{% set version = "3.1.0" %}
+{% set version = "3.2.0" %}
 
 package:
   name: {{ prefix }}{{ lang|lower }}
@@ -10,10 +10,10 @@ package:
 source:
   - folder: sm
     url: https://github.com/explosion/spacy-models/releases/download/{{ name }}_sm-{{ version }}/{{ name }}_sm-{{ version }}.tar.gz
-    sha256: 9d3ee828c02bea4a29c83e8e95d8320cc0a8e543cf7fbcb47ae3e0dadcada824    
+    sha256: bcdd2c8c9ccef064f549298d2c5a4f1d22d96ba85011a989125ea4477fad9334
   - folder: md
     url: https://github.com/explosion/spacy-models/releases/download/{{ name }}_md-{{ version }}/{{ name }}_md-{{ version }}.tar.gz
-    sha256: 8b63c2d27ef5ad02969b880fedad260e0df55e470d093075fc11edf5d33916af
+    sha256: 3b09738b9060e4f857dacd93538921b5b54f0c0c514e43a06fbcd51933993fd8
 build:
   noarch: python
   number: 0
@@ -45,7 +45,7 @@ outputs:
 about:
   home: https://spacy.io
   license: CC-BY-SA-3.0
-  summary: 'French multi-task CNN trained on the French Sequoia (Universal Dependencies) and WikiNER corpus.'
+  summary: French multi-task CNN trained on the French Sequoia (Universal Dependencies) and WikiNER corpus.
   license_file: LICENSE
   doc_url: https://spacy.io/models/fr
 
