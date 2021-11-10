@@ -1,6 +1,7 @@
 {% set prefix = "spacy-model-" %}
 {% set lang = "fr" %}
 {% set name = lang + "_core_news" %}
+{% set name_trf = lang + "_dep_news" %}
 {% set version = "3.1.0" %}
 
 package:
@@ -10,10 +11,17 @@ package:
 source:
   - folder: sm
     url: https://github.com/explosion/spacy-models/releases/download/{{ name }}_sm-{{ version }}/{{ name }}_sm-{{ version }}.tar.gz
-    sha256: 9d3ee828c02bea4a29c83e8e95d8320cc0a8e543cf7fbcb47ae3e0dadcada824    
+    sha256: 9d3ee828c02bea4a29c83e8e95d8320cc0a8e543cf7fbcb47ae3e0dadcada824
   - folder: md
     url: https://github.com/explosion/spacy-models/releases/download/{{ name }}_md-{{ version }}/{{ name }}_md-{{ version }}.tar.gz
     sha256: 8b63c2d27ef5ad02969b880fedad260e0df55e470d093075fc11edf5d33916af
+  - folder: lg
+    url: https://github.com/explosion/spacy-models/releases/download/{{ name }}_lg-{{ version }}/{{ name }}_lg-{{ version }}.tar.gz
+    sha256: a8da60e80fa8831cc9203908b6c2ec77953aa4543cb504ed4d5dc431bc85ffee
+  - folder: trf
+    url: https://github.com/explosion/spacy-models/releases/download/{{ name_trf }}_trf-{{ version }}/{{ name_trf }}_trf-{{ version }}.tar.gz
+    sha256: 1bf746c691262755a0f61fbb294a1528152e78fa9d124891700beb628c02d629
+
 build:
   noarch: python
   number: 0
@@ -51,6 +59,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - FernandezMathieu
     - sodre
     - mxr-conda
     - JennaLipscomb
