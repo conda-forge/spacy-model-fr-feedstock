@@ -1,7 +1,12 @@
 {% set prefix = "spacy-model-" %}
 {% set lang = "fr" %}
+
+{% if size == "trf" %}
+{% set name = lang + "_dep_news" %}
+{% else %}
 {% set name = lang + "_core_news" %}
-{% set name_trf = lang + "_dep_news" %}
+{% endif %}
+
 {% set version = "3.1.0" %}
 
 package:
@@ -10,20 +15,19 @@ package:
 
 source:
   - folder: sm
-    url: https://github.com/explosion/spacy-models/releases/download/{{ name }}_sm-{{ version }}/{{ name }}_sm-{{ version }}.tar.gz
+    url: https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-{{ version }}/fr_core_news_sm-{{ version }}.tar.gz
     sha256: 9d3ee828c02bea4a29c83e8e95d8320cc0a8e543cf7fbcb47ae3e0dadcada824
   - folder: md
-    url: https://github.com/explosion/spacy-models/releases/download/{{ name }}_md-{{ version }}/{{ name }}_md-{{ version }}.tar.gz
+    url: https://github.com/explosion/spacy-models/releases/download/fr_core_news_md-{{ version }}/fr_core_news_md-{{ version }}.tar.gz
     sha256: 8b63c2d27ef5ad02969b880fedad260e0df55e470d093075fc11edf5d33916af
   - folder: lg
-    url: https://github.com/explosion/spacy-models/releases/download/{{ name }}_lg-{{ version }}/{{ name }}_lg-{{ version }}.tar.gz
+    url: https://github.com/explosion/spacy-models/releases/download/fr_core_news_lg-{{ version }}/fr_core_news_lg-{{ version }}.tar.gz
     sha256: a8da60e80fa8831cc9203908b6c2ec77953aa4543cb504ed4d5dc431bc85ffee
   - folder: trf
-    url: https://github.com/explosion/spacy-models/releases/download/{{ name_trf }}_trf-{{ version }}/{{ name_trf }}_trf-{{ version }}.tar.gz
+    url: https://github.com/explosion/spacy-models/releases/download/fr_dep_news_trf-{{ version }}/fr_dep_news_trf-{{ version }}.tar.gz
     sha256: 1bf746c691262755a0f61fbb294a1528152e78fa9d124891700beb628c02d629
 
 build:
-  noarch: python
   number: 0
 
 test:
@@ -41,14 +45,25 @@ outputs:
       run:
         - python
         - setuptools
+        {% if size == "trf" %}
+        - spacy-transformers  # [unix]
+        {% endif %}
+
     test:
       imports:
         - {{ name }}_{{ size }}
       requires:
         - spacy {{ version.split('.')[0] }}.*
+        {% if size == "trf" %}
+        - spacy-transformers  # [unix]
+        {% endif %}
       commands:
+        {% if size == "trf" %}
+        - python -c "import {{ name }}_{{ size }} as m; m.load()"  # [unix]
+        {% else %}
         - python -c "import {{ name }}_{{ size }} as m; m.load()"
         - python -c "import spacy; spacy.load('{{ name }}_{{ size }}')"
+        {% endif %}
 
 about:
   home: https://spacy.io
