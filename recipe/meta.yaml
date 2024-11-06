@@ -7,7 +7,7 @@
 {% set name = lang + "_core_news" %}
 {% endif %}
 
-{% set version = "3.1.0" %}
+{% set version = "3.5.0" %}
 
 package:
   name: {{ prefix }}{{ lang|lower }}
@@ -16,16 +16,16 @@ package:
 source:
   - folder: sm
     url: https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-{{ version }}/fr_core_news_sm-{{ version }}.tar.gz
-    sha256: 9d3ee828c02bea4a29c83e8e95d8320cc0a8e543cf7fbcb47ae3e0dadcada824
+    sha256: f5ff599d0cc5abe4df1b8bf5a26a0e822b200d5c458f956241b3a9b3f3ab0aee
   - folder: md
     url: https://github.com/explosion/spacy-models/releases/download/fr_core_news_md-{{ version }}/fr_core_news_md-{{ version }}.tar.gz
-    sha256: 8b63c2d27ef5ad02969b880fedad260e0df55e470d093075fc11edf5d33916af
+    sha256: 14d24785c94a3daa1624b12efe83f1fbfaae9a688837ff1d493b2fb12f3207de
   - folder: lg
     url: https://github.com/explosion/spacy-models/releases/download/fr_core_news_lg-{{ version }}/fr_core_news_lg-{{ version }}.tar.gz
-    sha256: a8da60e80fa8831cc9203908b6c2ec77953aa4543cb504ed4d5dc431bc85ffee
+    sha256: 04faef01572c614e7b225fb59d76f739efa9699efe35aa7e19ae03c310194efe
   - folder: trf
     url: https://github.com/explosion/spacy-models/releases/download/fr_dep_news_trf-{{ version }}/fr_dep_news_trf-{{ version }}.tar.gz
-    sha256: 1bf746c691262755a0f61fbb294a1528152e78fa9d124891700beb628c02d629
+    sha256: 82be2aca1fefd75cb712a73d4451b5b305f9e33da5c6a97070a0bfc22c8d3e32
 
 build:
   number: 0
@@ -68,7 +68,7 @@ outputs:
 about:
   home: https://spacy.io
   license: CC-BY-SA-3.0
-  summary: 'French multi-task CNN trained on the French Sequoia (Universal Dependencies) and WikiNER corpus.'
+  summary: French multi-task CNN trained on the French Sequoia (Universal Dependencies) and WikiNER corpus.
   license_file: LICENSE
   doc_url: https://spacy.io/models/fr
 
